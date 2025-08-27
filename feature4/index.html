@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小熊情緒安慰站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fce7f3, #dbeafe, #e9d5ff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px;
+        }
+
+        .title-container {
+            width: 100%;
+            text-align: center;
+            padding-top: 16px;
+            padding-bottom: 8px;
+        }
+
+        .title-box {
+            display: inline-block;
+            background: linear-gradient(135deg, #f9a8d4, #93c5fd);
+            border-radius: 16px;
+            padding: 16px 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #374151;
+            margin: 0;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 16px;
+            margin-bottom: 48px;
+        }
+
+        .bear {
+            font-size: 80px;
+            margin-bottom: 16px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40%, 43% {
+                transform: translateY(-30px);
+            }
+            70% {
+                transform: translateY(-15px);
+            }
+            90% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .greeting {
+            font-size: 32px;
+            font-weight: bold;
+            color: #374151;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .message-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            margin-bottom: 32px;
+            width: 100%;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 2px solid #fce7f3;
+            max-width: 400px;
+            margin: 0 auto;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .message-box.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .message-text {
+            font-size: 24px;
+            color: #374151;
+            text-align: center;
+            line-height: 1.5;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 32px;
+        }
+
+        .emotion-button {
+            height: 80px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transform: scale(1);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .emotion-button:hover {
+            transform: scale(1.05);
+        }
+
+        .emotion-button:active {
+            transform: scale(0.95);
+        }
+
+        .sad-button {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+        }
+
+        .sad-button:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .angry-button {
+            background: linear-gradient(135deg, #f87171, #ef4444);
+        }
+
+        .angry-button:hover {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .emoji {
+            font-size: 32px;
+        }
+
+        @media (max-width: 640px) {
+            .title {
+                font-size: 28px;
+            }
+            
+            .greeting {
+                font-size: 24px;
+            }
+            
+            .message-text {
+                font-size: 20px;
+            }
+            
+            .emotion-button {
+                font-size: 20px;
+                height: 70px;
+            }
+            
+            .emoji {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Title -->
+    <div class="title-container">
+        <div class="title-box">
+            <h1 class="title">小熊情緒安慰站</h1>
+        </div>
+    </div>
+
+    <!-- Header with bear and greeting -->
+    <div class="header">
+        <div class="bear">🐻</div>
+        <h2 class="greeting">你今天還好嗎？</h2>
+    </div>
+
+    <!-- Message display area -->
+    <div class="message-area">
+        <div id="messageBox" class="message-box">
+            <p id="messageText" class="message-text"></p>
+        </div>
+    </div>
+
+    <!-- Emotion buttons -->
+    <div class="buttons-container">
+        <button class="emotion-button sad-button" onclick="handleEmotionClick('sad')">
+            <span class="emoji">💧</span>
+            傷心
+        </button>
+        
+        <button class="emotion-button angry-button" onclick="handleEmotionClick('angry')">
+            <span class="emoji">🔥</span>
+            生氣
+        </button>
+    </div>
+<button onclick="location.href='../index.html'">返回首頁</button>
+    <script>
+        const sadMessages = [
+            '沒關係，我陪你慢慢好起來。',
+            '我懂你的心情，一起加油！',
+            '來，給你一個大大的擁抱！',
+            '你很勇敢，會慢慢變好的。',
+            '每個人都會有難過的時候，這很正常。',
+            '我會一直在這裡陪著你。'
+        ];
+
+        const angryMessages = [
+            '生氣沒關係，我會陪著你。',
+            '深呼吸三次，我們一起冷靜一下。',
+            '你不是一個人，我在這裡陪你。',
+            '生氣的感覺我理解，讓我們一起處理。',
+            '慢慢來，不用急著平靜下來。',
+            '你的感受很重要，我都聽到了。'
+        ];
+
+        function getRandomMessage(messages) {
+            return messages[Math.floor(Math.random() * messages.length)];
+        }
+
+        function handleEmotionClick(emotion) {
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            
+            const messages = emotion === 'sad' ? sadMessages : angryMessages;
+            const randomMessage = getRandomMessage(messages);
+            
+            // Hide message with animation
+            messageBox.classList.remove('visible');
+            
+            // Show new message after a brief delay
+            setTimeout(() => {
+                messageText.textContent = randomMessage;
+                messageBox.classList.add('visible');
+            }, 100);
+        }
+    </script>
+</body>
+</html>

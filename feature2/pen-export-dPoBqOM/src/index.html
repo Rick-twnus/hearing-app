@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>心情日記小助手</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pyodide@0.26.2/dist/pyodide.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="flex justify-center items-center min-h-screen">
+  <div class="container mx-auto">
+    <!-- Main Menu -->
+    <div class="menu grid grid-cols-2 gap-4 mb-4">
+      <button class="menu-btn" data-modal="language-modal" data-i18n="languageTab">語言選擇</button>
+      <button class="menu-btn" data-modal="diary-modal" data-i18n="diaryTab">寫日記</button>
+      <button class="menu-btn" data-modal="reminder-modal" data-i18n="reminderTab">提醒設定</button>
+      <button class="menu-btn" data-modal="history-modal" data-i18n="historyTab">歷史紀錄</button>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-4xl text-center mb-6" data-i18n="title">心情日記小助手 🌟</h1>
+
+    <!-- Language Modal -->
+    <div id="language-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn">×</span>
+        <h2 class="text-2xl mb-4" data-i18n="languageTab">語言選擇</h2>
+        <div class="flex items-center justify-center">
+          <label for="language-select" class="mr-2 text-lg font-bold" data-i18n="language">語言:</label>
+          <select id="language-select" class="w-32">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diary Input Modal -->
+    <div id="diary-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn">×</span>
+        <h2 class="text-2xl mb-4" data-i18n="diaryTab">寫日記</h2>
+        <div class="mb-4">
+          <label for="diary-input" class="block mb-2 text-lg font-bold" data-i18n="diaryInput">分享你的心情 💬:</label>
+          <textarea id="diary-input" class="w-full" rows="4" placeholder="今天發生了什麼好玩的事？"></textarea>
+          <button id="speech-input" class="btn bg-green-300 text-white mt-2 hover:bg-green-400" data-i18n="speechInput">語音輸入 🎤</button>
+        </div>
+        <div class="mb-4">
+          <label class="block mb-2 text-lg font-bold" data-i18n="moodTracker">今天的心情 😊:</label>
+          <div class="flex gap-4 justify-center">
+            <span class="mood-emoji" data-mood="happy">😊 開心</span>
+            <span class="mood-emoji" data-mood="neutral">😌 普通</span>
+            <span class="mood-emoji" data-mood="sad">😢 難過</span>
+            <span class="mood-emoji" data-mood="angry">😣 生氣</span>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="photo-upload" class="block mb-2 text-lg font-bold" data-i18n="photoUpload">上傳照片 📸:</label>
+          <input type="file" id="photo-upload" accept="image/*">
+        </div>
+        <button id="submit-diary" class="btn bg-pink-300 text-white w-full hover:bg-pink-400" data-i18n="submit">保存日記 💾</button>
+      </div>
+    </div>
+
+    <!-- Reminder Setting Modal -->
+    <div id="reminder-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn">×</span>
+        <h2 class="text-2xl mb-4" data-i18n="reminderTab">提醒設定</h2>
+        <div class="flex items-center justify-center">
+          <label for="reminder-time" class="mr-2 text-lg font-bold" data-i18n="reminder">每日提醒:</label>
+          <input type="time" id="reminder-time" class="w-32">
+          <button id="set-reminder" class="btn bg-blue-300 text-white ml-2 hover:bg-blue-400" data-i18n="setReminder">設定提醒 🕒</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- History Modal -->
+    <div id="history-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn">×</span>
+        <h2 class="text-2xl mb-4" data-i18n="historyTab">歷史紀錄</h2>
+        <div id="diary-entries" class="mt-6"></div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

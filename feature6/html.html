@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>造句學習App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>詞類方塊</h2>
+            <div class="return-area" ondragover="event.preventDefault()" ondrop="returnBlock(event)">
+                <h3>返回區</h3>
+            </div>
+            <div class="category" data-category="subject">
+                <h3>主詞</h3>
+                <div class="block subject" draggable="true">我</div>
+                <div class="block subject" draggable="true">你</div>
+                <div class="block subject" draggable="true">他</div>
+                <div class="block subject" draggable="true">她</div>
+                <div class="block subject" draggable="true">我們</div>
+                <div class="block subject" draggable="true">他們</div>
+                <div class="block subject" draggable="true">小明</div>
+                <div class="block subject" draggable="true">小花</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增主詞">
+                    <button class="add-custom" data-category="subject">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="verb">
+                <h3>動詞</h3>
+                <div class="block verb" draggable="true">吃</div>
+                <div class="block verb" draggable="true">跑</div>
+                <div class="block verb" draggable="true">看</div>
+                <div class="block verb" draggable="true">寫</div>
+                <div class="block verb" draggable="true">玩</div>
+                <div class="block verb" draggable="true">聽</div>
+                <div class="block verb" draggable="true">說</div>
+                <div class="block verb" draggable="true">跳</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增動詞">
+                    <button class="add-custom" data-category="verb">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="object">
+                <h3>受詞</h3>
+                <div class="block object" draggable="true">蘋果</div>
+                <div class="block object" draggable="true">書</div>
+                <div class="block object" draggable="true">車</div>
+                <div class="block object" draggable="true">蛋糕</div>
+                <div class="block object" draggable="true">水</div>
+                <div class="block object" draggable="true">玩具</div>
+                <div class="block object" draggable="true">電影</div>
+                <div class="block object" draggable="true">畫</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增受詞">
+                    <button class="add-custom" data-category="object">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="quantifier">
+                <h3>量詞</h3>
+                <div class="block quantifier" draggable="true">一</div>
+                <div class="block quantifier" draggable="true">兩</div>
+                <div class="block quantifier" draggable="true">三</div>
+                <div class="block quantifier" draggable="true">四</div>
+                <div class="block quantifier" draggable="true">五</div>
+                <div class="block quantifier" draggable="true">許多</div>
+                <div class="block quantifier" draggable="true">一些</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增量詞">
+                    <button class="add-custom" data-category="quantifier">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="conjunction">
+                <h3>連接詞</h3>
+                <div class="block conjunction" draggable="true">和</div>
+                <div class="block conjunction" draggable="true">或</div>
+                <div class="block conjunction" draggable="true">但是</div>
+                <div class="block conjunction" draggable="true">因為</div>
+                <div class="block conjunction" draggable="true">所以</div>
+                <div class="block conjunction" draggable="true">雖然</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增連接詞">
+                    <button class="add-custom" data-category="conjunction">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="noun-appliance">
+                <h3>名詞 (電器)</h3>
+                <div class="block noun-appliance" draggable="true">電視</div>
+                <div class="block noun-appliance" draggable="true">冰箱</div>
+                <div class="block noun-appliance" draggable="true">電腦</div>
+                <div class="block noun-appliance" draggable="true">手機</div>
+                <div class="block noun-appliance" draggable="true">洗衣機</div>
+                <div class="block noun-appliance" draggable="true">電扇</div>
+                <div class="block noun-appliance" draggable="true">微波爐</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增電器名詞">
+                    <button class="add-custom" data-category="noun-appliance">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="noun-plant">
+                <h3>名詞 (植物)</h3>
+                <div class="block noun-plant" draggable="true">花</div>
+                <div class="block noun-plant" draggable="true">樹</div>
+                <div class="block noun-plant" draggable="true">草</div>
+                <div class="block noun-plant" draggable="true">竹子</div>
+                <div class="block noun-plant" draggable="true">玫瑰</div>
+                <div class="block noun-plant" draggable="true">仙人掌</div>
+                <div class="block noun-plant" draggable="true">向日葵</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增植物名詞">
+                    <button class="add-custom" data-category="noun-plant">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="noun-animal">
+                <h3>名詞 (動物)</h3>
+                <div class="block noun-animal" draggable="true">狗</div>
+                <div class="block noun-animal" draggable="true">貓</div>
+                <div class="block noun-animal" draggable="true">鳥</div>
+                <div class="block noun-animal" draggable="true">魚</div>
+                <div class="block noun-animal" draggable="true">兔子</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增動物名詞">
+                    <button class="add-custom" data-category="noun-animal">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="noun-food">
+                <h3>名詞 (食物)</h3>
+                <div class="block noun-food" draggable="true">麵包</div>
+                <div class="block noun-food" draggable="true">米飯</div>
+                <div class="block noun-food" draggable="true">蔬菜</div>
+                <div class="block noun-food" draggable="true">水果</div>
+                <div class="block noun-food" draggable="true">巧克力</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增食物名詞">
+                    <button class="add-custom" data-category="noun-food">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="noun-color">
+                <h3>名詞 (顏色)</h3>
+                <div class="block noun-color" draggable="true">紅色</div>
+                <div class="block noun-color" draggable="true">藍色</div>
+                <div class="block noun-color" draggable="true">綠色</div>
+                <div class="block noun-color" draggable="true">黃色</div>
+                <div class="block noun-color" draggable="true">黑色</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增顏色名詞">
+                    <button class="add-custom" data-category="noun-color">新增</button>
+                </div>
+            </div>
+            <div class="category" data-category="noun-place">
+                <h3>名詞 (場所)</h3>
+                <div class="block noun-place" draggable="true">學校</div>
+                <div class="block noun-place" draggable="true">公園</div>
+                <div class="block noun-place" draggable="true">家</div>
+                <div class="block noun-place" draggable="true">商店</div>
+                <div class="block noun-place" draggable="true">醫院</div>
+                <div class="add-block">
+                    <input type="text" class="custom-input" placeholder="新增場所名詞">
+                    <button class="add-custom" data-category="noun-place">新增</button>
+                </div>
+            </div>
+        </div>
+        <div class="canvas" id="canvas">
+            <h2>拖拽到這裡組成句子</h2>
+        </div>
+        <div class="sentence-output">
+            <h2>形成的句子：</h2>
+            <p id="sentence"></p>
+            <button id="play-sentence">播放聲音</button>
+            <button id="clear-canvas">清除畫布</button>
+        </div>
+		<button onclick="location.href='../index.html'" class="fixed top-4 left-4 bg-gray-300 px-3 py-1 rounded hover:bg-gray-400">返回首頁</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

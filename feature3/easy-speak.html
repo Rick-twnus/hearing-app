@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Speak - 聽力障礙溝通助手</title>
+    <meta name="description" content="幫助聽力障礙人士與他人輕鬆溝通的網頁應用">
+    <link rel="stylesheet" href="easy-speak.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <div class="home-container">
+            <header class="home-header">
+                <h1 class="home-title" data-translate="app.title">Easy Speak</h1>
+                <p class="home-subtitle" data-translate="app.subtitle">幫助聽力障礙人士與他人輕鬆溝通</p>
+				
+                
+                <div class="language-switch">
+                    <button id="lang-btn" class="language-btn" data-translate="language.switch">
+                        <i class="fas fa-globe"></i> 切換語言
+                    </button>
+                </div>
+            </header>
+
+            <main class="home-main">
+                <div class="nav-cards">
+                    <div class="nav-card" onclick="navigateTo('conversation')">
+                        <div class="nav-card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h2 data-translate="nav.conversation">開始對話</h2>
+                        <p>與他人進行即時溝通</p>
+                    </div>
+                    
+                    <div class="nav-card" onclick="navigateTo('phrases')">
+                        <div class="nav-card-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h2 data-translate="nav.phrases">常用語管理</h2>
+                        <p>設置您的常用短語</p>
+                    </div>
+                </div>
+            </main>
+			<br/><br/><button onclick="location.href='../index.html'" class="fixed top-4 left-4 bg-gray-300 px-3 py-1 rounded hover:bg-gray-400">返回首頁</button>
+        </div>
+    </div>
+	
+
+    <!-- Conversation Page -->
+    <div id="conversation-page" class="page">
+        <div class="conversation-container">
+            <!-- Secondary User Section (Rotated 180 degrees) -->
+            <div class="conversation-half secondary-section">
+                <div class="conversation-content">
+                    <!-- Secondary Messages Area -->
+                    <div class="messages-area" id="secondary-messages">
+                        <div class="messages-empty" data-translate="conversation.empty">開始您的對話吧！</div>
+                    </div>
+
+                    <!-- Secondary Input Area -->
+                    <div class="input-area">
+                        <input type="text" id="secondary-input" class="message-input" 
+                               data-translate-placeholder="conversation.input.placeholder" 
+                               placeholder="輸入訊息...">
+                        <button class="send-btn" onclick="sendMessage('secondary')">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Divider -->
+            <div class="center-divider"></div>
+
+            <!-- Primary User Section -->
+            <div class="conversation-half primary-section">
+                <div class="conversation-content">
+                    <!-- Primary Messages Area -->
+                    <div class="messages-area" id="primary-messages">
+                        <div class="messages-empty" data-translate="conversation.empty">開始您的對話吧！</div>
+                    </div>
+
+                    <!-- Primary Input Area -->
+                    <div class="input-area">
+                        <input type="text" id="primary-input" class="message-input" 
+                               data-translate-placeholder="conversation.input.placeholder" 
+                               placeholder="輸入訊息...">
+                        
+                        <!-- Quick Phrases Button -->
+                        <button class="phrases-btn" onclick="togglePhrasesPopover()">
+                            <i class="fas fa-book-open"></i>
+                        </button>
+
+                        <button class="send-btn" onclick="sendMessage('primary')">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                        
+                        <button class="end-btn" onclick="endConversation()">
+                            <i class="fas fa-home"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Phrases Popover -->
+            <div id="phrases-popover" class="phrases-popover">
+                <div class="phrases-content">
+                    <h3 data-translate="conversation.phrases">常用語</h3>
+                    <div id="phrases-list" class="phrases-list">
+                        <p class="no-phrases" data-translate="phrases.no.categories">尚未建立任何分類</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phrases Page -->
+    <div id="phrases-page" class="page">
+        <div class="phrases-container">
+            <header class="phrases-header">
+                <h1 data-translate="phrases.title">常用語管理</h1>
+                <button class="back-btn" onclick="navigateTo('home')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </header>
+
+            <main class="phrases-main">
+                <!-- Add Category Section -->
+                <div class="add-section">
+                    <div class="add-form">
+                        <input type="text" id="new-category-input" class="category-input" 
+                               data-translate-placeholder="phrases.category.placeholder"
+                               placeholder="分類名稱（如：餐廳、咖啡廳）">
+                        <button class="add-btn" onclick="addCategory()">
+                            <i class="fas fa-plus"></i>
+                            <span data-translate="phrases.add.category">新增分類</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categories List -->
+                <div id="categories-list" class="categories-list">
+                    <div class="no-categories" data-translate="phrases.no.categories">尚未建立任何分類</div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-title">編輯</h3>
+            <input type="text" id="modal-input" class="modal-input">
+            <div class="modal-actions">
+                <button class="cancel-btn" onclick="closeModal()" data-translate="phrases.cancel">取消</button>
+                <button class="save-btn" onclick="saveEdit()" data-translate="phrases.save">儲存</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="easy-speak.js"></script>
+</body>
+</html>

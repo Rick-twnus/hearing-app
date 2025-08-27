@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聽力輔助通話 - HearClear Chat</title>
+    <meta name="description" content="專為聽力障礙人士設計的電話輔助應用，提供即時語音轉文字和文字轉語音功能">
+    
+    <meta property="og:title" content="聽力輔助通話 - HearClear Chat">
+    <meta property="og:description" content="專為聽力障礙人士設計的電話輔助應用，提供即時語音轉文字和文字轉語音功能">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="status-section">
+                    <div class="status-indicator" id="statusIndicator"></div>
+                    <h1 class="app-title">聽力輔助通話</h1>
+                </div>
+                <button class="connection-btn" id="connectionBtn">
+                    <svg class="btn-icon" id="connectionIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span id="connectionText">開始通話</span>
+                </button>
+				<button onclick="location.href='../index.html'" class="fixed top-4 left-4 bg-gray-300 px-3 py-1 rounded hover:bg-gray-400">返回首頁</button>
+            </div>
+        </header>
+
+        <!-- Messages Area -->
+        <main class="messages-container" id="messagesContainer">
+            <div class="messages-list" id="messagesList">
+                <!-- Messages will be added here dynamically -->
+            </div>
+            
+            <!-- Typing indicator -->
+            <div class="typing-indicator hidden" id="typingIndicator">
+                <div class="message-card">
+                    <svg class="volume-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="m19.07 4.93-1.41 1.41A5 5 0 0 1 19 12a5 5 0 0 1-1.34 3.66l1.41 1.41A7 7 0 0 0 21 12a7 7 0 0 0-1.93-4.93zM15.54 8.46a3 3 0 0 1 0 7.08l1.41 1.41a5 5 0 0 0 0-9.9l-1.41 1.41z"></path>
+                    </svg>
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                    <span class="typing-text">正在聽取...</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Controls -->
+        <div class="controls-section hidden" id="controlsSection">
+            <!-- Text Input -->
+            <div class="input-section">
+                <textarea 
+                    id="textInput" 
+                    placeholder="輸入要說的話..." 
+                    class="text-input"
+                    rows="3"
+                ></textarea>
+                <button class="send-btn" id="sendBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Voice Controls -->
+            <div class="voice-controls">
+                <button class="voice-btn" id="voiceBtn">
+                    <svg class="voice-icon" id="voiceIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m12 1-3 3-3-3 3-3 3 3z"></path>
+                        <path d="M12 8c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z"></path>
+                    </svg>
+                    <span id="voiceText">開始聽取對方說話</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
