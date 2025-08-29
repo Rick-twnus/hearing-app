@@ -7,11 +7,20 @@
 	<h1>聽力輔助APP</h1>
     <link rel="stylesheet" href="style.css">
 	<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#007bff">
+<!-- iOS PWA 設定 -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="HearingApp">
-<link rel="apple-touch-icon" href="images/apple-icon.png">
+
+<!-- iOS 專用圖示（至少要 180x180 才會生效）-->
+<link rel="apple-touch-icon" sizes="180x180" href="images/icon-180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/icon-152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="images/icon-120.png">
+<link rel="apple-touch-icon" href="images/icon-64.png">
+
+<!-- 避免 iOS 自動縮放 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
 </head>
 <body>
     <h2>功能總覽首頁</h2>
@@ -32,6 +41,7 @@
 </script>
 </body>
 </html>
+
 
 
 
