@@ -1,14 +1,36 @@
-body {
+/*body {
+	background-image: url("homebackground.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 100vh; 
     font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 50px;
+}*/
+
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* 水平置中 */
+  align-items: center;     /* 垂直置中 */
+  flex-direction: column;  /* 內容上下排列 */
+  height: 100vh;         /* 確保能撐滿 */
+  overflow: hidden;     /* 避免捲動造成空白 */
+
+  /* 背景圖設定 */
+  background: url("homebackground.jpg") no-repeat center center;
+  background-size: contain;  /* 會自動縮放填滿畫面 */
+  font-family: "Microsoft JhengHei", sans-serif;
+  color: white;
+  text-align: center;
 }
 
-h1 {
-    margin-bottom: 30px;
-}
 
-.buttons button {
+
+/*.buttons button {
     display: block;
     margin: 10px auto;
     padding: 12px 25px;
@@ -19,9 +41,65 @@ h1 {
     background-color: #4CAF50;
     color: white;
     transition: background-color 0.3s;
+}*/
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* 全螢幕 */
+  display: flex;
+  justify-content: center; /* 水平置中 */
+  align-items: center;     /* 垂直置中 */
+  flex-direction: column;  /* 內容上下排列 */
+
+  /* 背景圖設定 */
+  background: url("homebackground.jpg") no-repeat center center;
+  background-size: contain;  /* 會自動縮放填滿畫面 */
+  font-family: "Microsoft JhengHei", sans-serif;
+  color: white;
+  text-align: center;
 }
 
+    .row {
+      display: flex;
+      justify-content: center;  /* 水平置中 */
+      gap: 10px;                /* 按鈕間距 */
+      margin-bottom: 120px;      /* 列與列之間的距離 */
+    }
+
+    /* 按鈕樣式 */
+    .row button {
+      flex: 1;
+	  height: 30px; 
+	  width: 100px;
+      padding: 14px 0;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background: #4CAF50;
+      color: #fff;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+	  line-height: 5px; /* 讓文字垂直置中 */
+    }
+
+    .row button:hover {
+      background: #45a049;
+      transform: scale(1.05);
+    }
+	
+	.btn-large {
+		font-size: 20px;   /* 大字 */
+	}
+	.btn-1 {
+		font-size: 18px;   /* 大字 */
+	}
+
+	.btn-medium {
+		font-size: 10px;   /* 中等字 */
+	}
 .buttons button:hover {
     background-color: #45a049;
 }
+
 
