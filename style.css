@@ -24,25 +24,24 @@
     transition: background-color 0.3s;
 }*/
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  height: calc(var(--vh, 1vh) * 100); /* 全螢幕 */
-  padding-top: env(safe-area-inset-top);     /* iOS 上方安全區 */
-  padding-bottom: env(safe-area-inset-bottom); /* iOS 下方安全區 */
+  height: calc(var(--vh, 1vh) * 100);
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
   display: flex;
-  justify-content: center; /* 水平置中 */
-  align-items: center;     /* 垂直置中 */
-  flex-direction: column;  /* 內容上下排列 */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-  /* 背景圖設定 */
   background: url("homebackground.jpg") no-repeat center center;
-  background-size: cover;  /* 會自動縮放填滿畫面 */
+  background-size: cover;
+  background-attachment: fixed;
+
   font-family: "Microsoft JhengHei", sans-serif;
   color: white;
   text-align: center;
@@ -90,6 +89,7 @@ body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
