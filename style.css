@@ -51,8 +51,8 @@ body {
     /* 按鈕樣式 */
     .row button {
       flex: 1;
-	  height: 30px; 
-	  width: 100px;
+	  height: 100px; 
+	  width: 135px;
       padding: 14px 0;
       cursor: pointer;
       border: none;
@@ -81,6 +81,7 @@ body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
