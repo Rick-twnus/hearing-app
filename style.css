@@ -27,7 +27,9 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh; /* 全螢幕 */
+  min-height: 100vh; /* 全螢幕 */
+  padding-top: env(safe-area-inset-top);     /* iOS 上方安全區 */
+  padding-bottom: env(safe-area-inset-bottom); /* iOS 下方安全區 */
   display: flex;
   justify-content: center; /* 水平置中 */
   align-items: center;     /* 垂直置中 */
@@ -35,7 +37,7 @@ body {
 
   /* 背景圖設定 */
   background: url("homebackground.jpg") no-repeat center center;
-  background-size: contain;  /* 會自動縮放填滿畫面 */
+  background-size: cover;  /* 會自動縮放填滿畫面 */
   font-family: "Microsoft JhengHei", sans-serif;
   color: white;
   text-align: center;
@@ -83,6 +85,7 @@ body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
