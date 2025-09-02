@@ -57,32 +57,30 @@ body {
       cursor: pointer;
       border: none;
       border-radius: 8px;
-      background: #4CAF50;
-      color: #fff;
+      background: none;
+      color: #4d6382;
       font-weight: bold;
       transition: background 0.3s, transform 0.2s;
 	  line-height: 5px; /* 讓文字垂直置中 */
     }
 
     .row button:hover {
-      background: #45a049;
+      background: #4d6382;
       transform: scale(1.05);
+	  text-decoration: underline; /* 滑鼠移上去時，加底線 */
+      color: #fff;             /* 可選：變深一點 */
     }
 	
 	.btn-large {
 		font-size: 20px;   /* 大字 */
 	}
 	.btn-1 {
-		font-size: 18px;   /* 大字 */
+		font-size: 20px;   /* 大字 */
 	}
 
 	.btn-medium {
-		font-size: 10px;   /* 中等字 */
+		font-size: 20px;   /* 中等字 */
 	}
-.buttons button:hover {
-    background-color: #45a049;
-}
-
 
 
 
