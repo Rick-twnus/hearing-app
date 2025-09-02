@@ -23,41 +23,42 @@
     color: white;
     transition: background-color 0.3s;
 }*/
-body, html {
+
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: "Microsoft JhengHei", sans-serif;
 }
 
 .bg-image {
   position: fixed;
-  top: env(safe-area-inset-top, 0);
+  top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  object-fit: cover; /* 保持比例，同時填滿畫面 */
-  z-index: -1;       /* 背景在後面 */
+  object-fit: cover; /* 保持比例填滿 */
+  z-index: -1;
 }
 
 .content {
-  position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  text-align: center;
+  height: 100vh; /* JS 會動態調整 */
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
-  text-align: center;
+  color: white;
 }
-    .row {
-      display: flex;
-      justify-content: center;  /* 水平置中 */
-      gap: 15px;                /* 按鈕間距 */
-      margin-bottom: 44px;      /* 列與列之間的距離 */
-	  margin-top: 80px;
-    }
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
 
     /* 按鈕樣式 */
     .row button {
@@ -93,6 +94,7 @@ body, html {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
