@@ -532,3 +532,38 @@ let app;
 document.addEventListener('DOMContentLoaded', () => {
     app = new EasySpeak();
 });
+const messagesEl = document.getElementById('messages');
+let originalHeight = window.innerHeight;
+
+function sendMessage(side) {
+  const input = side === 'top' ? document.getElementById('topText') : document.getElementById('bottomText');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const div = document.createElement('div');
+  div.textContent = msg;
+  div.classList.add('chat-bubble', side);
+
+  messagesEl.appendChild(div);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  input.value = '';
+}
+
+// 偵測鍵盤彈出，自動捲到底部
+window.addEventListener('resize', () => {
+  const newHeight = window.innerHeight;
+  if (newHeight < originalHeight) {
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+  originalHeight = newHeight;
+});
+
+// 輸入框 focus 時捲到底部
+document.querySelectorAll('.chat-input-container input').forEach(input => {
+  input.addEventListener('focus', () => {
+    setTimeout(() => {
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }, 300);
+  });
+});
+s
