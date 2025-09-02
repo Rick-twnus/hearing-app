@@ -54,7 +54,7 @@ body {
 
   /* 背景圖設定 */
   background: url("homebackground.jpg") no-repeat center center;
-  background-size: contain;  /* 會自動縮放填滿畫面 */
+  background-size: cover;  /* 會自動縮放填滿畫面 */
   font-family: "Microsoft JhengHei", sans-serif;
   color: white;
   text-align: center;
@@ -101,6 +101,7 @@ body {
 .buttons button:hover {
     background-color: #45a049;
 }
+
 
 
 
