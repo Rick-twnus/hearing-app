@@ -22,13 +22,26 @@
     </div>
     <script src="script.js"></script>
 	<script>
-  if ("serviceWorker" in navigator) {
+ /* if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")
       .then(() => console.log("Service Worker registered"));
-  }
+  }*/
+		  // 設定全螢幕高度
+    function setFullHeight() {
+      document.querySelector('.content').style.height = `${window.innerHeight}px`;
+    }
+    window.addEventListener('load', setFullHeight);
+    window.addEventListener('resize', setFullHeight);
+
+    // 註冊 service worker
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("Service Worker registered"));
+    }
 </script>
 </body>
 </html>
+
 
 
 
