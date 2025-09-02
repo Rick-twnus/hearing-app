@@ -27,30 +27,28 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  font-family: "Microsoft JhengHei", sans-serif;
+  height: calc(var(--vh, 1vh) * 100); /* 真正全螢幕高度 */
 }
 
-.bg-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover; /* 保持比例填滿 */
-  z-index: -1;
-}
-
-.content {
+body {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  background: url("homebackground.jpg") no-repeat center top;
+  background-size: cover;
+  font-family: "Microsoft JhengHei", sans-serif;
   text-align: center;
-  height: 100vh; /* JS 會動態調整 */
+  color: white;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
-  color: white;
+}
+
+/* 內容容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .row {
@@ -94,6 +92,7 @@ html, body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
