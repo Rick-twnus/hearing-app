@@ -44,17 +44,17 @@ body {
     .row {
       display: flex;
       justify-content: center;  /* 水平置中 */
-      gap: px;                /* 按鈕間距 */
-      margin-bottom: 97px;      /* 列與列之間的距離 */
-	  margin-top: 7px;
+      gap: 15px;                /* 按鈕間距 */
+      margin-bottom: 43px;      /* 列與列之間的距離 */
+	  margin-top: 80px;
     }
 
     /* 按鈕樣式 */
     .row button {
       flex: 1;
 	  white-space: normal;   /* 允許文字換行 */
-	  height: 100px; 
-	  width: 129px;
+	  height: 80px; 
+	  width: 115px;
       padding: 14px 0;
       cursor: pointer;
       border: none;
@@ -67,10 +67,10 @@ body {
     }
 
     .row button:hover {
-      background: #4d6382;
+    /*  background: #4d6382; */
       transform: scale(1.05);
 	  text-decoration: underline; /* 滑鼠移上去時，加底線 */
-      color: #fff;             /* 可選：變深一點 */
+      /*color: #fff;  */           /* 可選：變深一點 */
     }
 	
 	.btn-large {
@@ -83,6 +83,7 @@ body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
