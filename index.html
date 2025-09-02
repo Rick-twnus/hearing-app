@@ -20,25 +20,14 @@
         <button class="btn-large" onclick="location.href='feature6/html.html'">造句學習</button>
     </div>
 	<script>
- /* if ("serviceWorker" in navigator) {
+  if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")
       .then(() => console.log("Service Worker registered"));
-  }*/
- if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js")
-        .then(() => console.log("Service Worker registered"));
-    }
-
-    // iOS / Android 真實高度
-    function setVh() {
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-    window.addEventListener('resize', setVh);
-    window.addEventListener('load', setVh);
+  }
 </script>
 </body>
 </html>
+
 
 
 
