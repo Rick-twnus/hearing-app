@@ -34,11 +34,14 @@ body {
   flex-direction: column;  /* 內容上下排列 */
 
   /* 背景圖設定 */
-  background: url("homebackground.jpg") no-repeat center center;
+  background: url("homebackground.jpg") no-repeat center top;
   background-size: cover;  /* 會自動縮放填滿畫面 */
   font-family: "Microsoft JhengHei", sans-serif;
   color: white;
   text-align: center;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .row {
@@ -82,6 +85,7 @@ body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
