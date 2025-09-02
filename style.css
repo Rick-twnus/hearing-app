@@ -63,7 +63,7 @@ body {
       color: #4d6382;
       font-weight: bold;
       transition: background 0.3s, transform 0.2s;
-	  line-height: 0px; /* 讓文字垂直置中 */
+	  line-height: 20px; /* 讓文字垂直置中 */
     }
 
     .row button:hover {
@@ -83,6 +83,7 @@ body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
