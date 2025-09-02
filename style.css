@@ -51,6 +51,7 @@ body {
     /* 按鈕樣式 */
     .row button {
       flex: 1;
+	  white-space: normal;   /* 允許文字換行 */
 	  height: 100px; 
 	  width: 135px;
       padding: 14px 0;
@@ -81,6 +82,7 @@ body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
