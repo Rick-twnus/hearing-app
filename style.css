@@ -10,25 +10,6 @@
 }*/
 
 
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center; /* 水平置中 */
-  align-items: center;     /* 垂直置中 */
-  flex-direction: column;  /* 內容上下排列 */
-  height: 100vh;         /* 確保能撐滿 */
-  overflow: hidden;     /* 避免捲動造成空白 */
-
-  /* 背景圖設定 */
-  background: url("homebackground.jpg") no-repeat center center;
-  background-size: cover;  /* 會自動縮放填滿畫面 */
-  font-family: "Microsoft JhengHei", sans-serif;
-  color: white;
-  text-align: center;
-}
-
-
 
 /*.buttons button {
     display: block;
@@ -101,6 +82,7 @@ body {
 .buttons button:hover {
     background-color: #45a049;
 }
+
 
 
 
