@@ -1,7 +1,7 @@
 {
   "name": "Hearing App",
   "short_name": "Hearing",
-  "start_url": "./index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007bff",
@@ -23,4 +23,5 @@
     }
   ]
 }
+
 
