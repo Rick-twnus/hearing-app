@@ -49,6 +49,8 @@ body {
   justify-content: center;
   gap: 15px;
   margin: 20px 0;
+  margin-top: 86px;
+  margin-bottom: 37px;
 }
 
     /* 按鈕樣式 */
@@ -85,6 +87,7 @@ body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
+
 
 
 
