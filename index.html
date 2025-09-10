@@ -8,9 +8,8 @@
   <!-- iOS PWA 設定 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="style.css">
 	<link rel="manifest" href="manifest.json">
-	<style>
+<style>
 html, body {
   margin: 0;
   padding: 0;
@@ -25,6 +24,49 @@ html, body {
   background: url("homebackground1.JPG") no-repeat center center;
   background-size: cover;
 }
+	.row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+  margin-top: 86px;
+  margin-bottom: 37px;
+}
+
+    /* 按鈕樣式 */
+    .row button {
+      flex: 1;
+	  white-space: normal;   /* 允許文字換行 */
+	  height: 80px; 
+	  width: 115px;
+      padding: 14px 0;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background: none;
+      color: #4d6382;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+	  line-height: 20px; /* 讓文字垂直置中 */
+    }
+
+    .row button:hover {
+    /*  background: #4d6382; */
+      transform: scale(1.05);
+	  text-decoration: underline; /* 滑鼠移上去時，加底線 */
+      /*color: #fff;  */           /* 可選：變深一點 */
+    }
+	
+	.btn-large {
+		font-size: 20px;   /* 大字 */
+	}
+	.btn-1 {
+		font-size: 20px;   /* 大字 */
+	}
+
+	.btn-medium {
+		font-size: 20px;   /* 中等字 */
+	}
  </style>
 </head>
 <body>
@@ -47,6 +89,7 @@ html, body {
 </script>
 </body>
 </html>
+
 
 
 
