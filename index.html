@@ -1,83 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>聽力輔助APP</title>
 
   <!-- iOS PWA 設定 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="manifest" href="manifest.json">
-	<script src="script.js"></script>
-	<script>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-	position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url("homebackground1.JPG") no-repeat center center;
-  background-size: cover;
-}
-
-/*.background {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url("homebackground1.JPG") no-repeat center center;
-  background-size: cover;
-}*/
-	.row {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px 0;
-  margin-top: 86px;
-  margin-bottom: 37px;
-}
-
-    /* 按鈕樣式 */
-    .row button {
-      flex: 1;
-	  white-space: normal;   /* 允許文字換行 */
-	  height: 80px; 
-	  width: 115px;
-      padding: 14px 0;
-      cursor: pointer;
-      border: none;
-      border-radius: 8px;
-      background: none;
-      color: #4d6382;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.2s;
-	  line-height: 20px; /* 讓文字垂直置中 */
-    }
-
-    .row button:hover {
-    /*  background: #4d6382; */
-      transform: scale(1.05);
-	  text-decoration: underline; /* 滑鼠移上去時，加底線 */
-      /*color: #fff;  */           /* 可選：變深一點 */
-    }
-	
-	.btn-large {
-		font-size: 20px;   /* 大字 */
-	}
-	.btn-1 {
-		font-size: 20px;   /* 大字 */
-	}
-
-	.btn-medium {
-		font-size: 20px;   /* 中等字 */
-	}
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js")
-      .then(() => console.log("Service Worker registered"));
-  }
-</script>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">	
 </head>
 <body>
     <div class="row">
@@ -90,8 +22,16 @@ html, body {
         <button class="btn-medium" onclick="location.href='feature4/index.html'">小熊<br>情緒安慰站</button>
         <button class="btn-large" onclick="location.href='feature6/html.html'">造句學習</button>
     </div>
+	<script src="script.js"></script>
+<script>
+	  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("Service Worker registered"));
+  }
+</script>
 </body>
 </html>
+
 
 
 
