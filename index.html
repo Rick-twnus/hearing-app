@@ -9,8 +9,21 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<link rel="manifest" href="manifest.json">
-<style>
-html, body {
+</head>
+<body>
+    <div class="row">
+        <button class="btn-1" onclick="location.href='feature1/sound_to_word/dist/index.html'">語音轉文字</button>
+        <button class="btn-medium" onclick="location.href='feature2/pen-export-dPoBqOM/dist/index.html'">心情日記<br/>小助手</button>
+        <button class="btn-medium" onclick="location.href='feature3/easy-speak.html'">Easy Speak</button>
+	</div>
+	<div class="row">
+        <button class="btn-large" onclick="location.href='feature5/index.html'">輔助通話</button>
+        <button class="btn-medium" onclick="location.href='feature4/index.html'">小熊<br>情緒安慰站</button>
+        <button class="btn-large" onclick="location.href='feature6/html.html'">造句學習</button>
+    </div>
+	<script src="script.js"></script>
+	<script>
+		html, body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -67,21 +80,6 @@ html, body {
 	.btn-medium {
 		font-size: 20px;   /* 中等字 */
 	}
- </style>
-</head>
-<body>
-    <div class="row">
-        <button class="btn-1" onclick="location.href='feature1/sound_to_word/dist/index.html'">語音轉文字</button>
-        <button class="btn-medium" onclick="location.href='feature2/pen-export-dPoBqOM/dist/index.html'">心情日記<br/>小助手</button>
-        <button class="btn-medium" onclick="location.href='feature3/easy-speak.html'">Easy Speak</button>
-	</div>
-	<div class="row">
-        <button class="btn-large" onclick="location.href='feature5/index.html'">輔助通話</button>
-        <button class="btn-medium" onclick="location.href='feature4/index.html'">小熊<br>情緒安慰站</button>
-        <button class="btn-large" onclick="location.href='feature6/html.html'">造句學習</button>
-    </div>
-	<script src="script.js"></script>
-	<script>
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")
       .then(() => console.log("Service Worker registered"));
@@ -89,6 +87,7 @@ html, body {
 </script>
 </body>
 </html>
+
 
 
 
