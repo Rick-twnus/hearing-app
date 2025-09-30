@@ -76,6 +76,7 @@ html, body {
   </style>
 </head>
 <body>
+	<div class="background">
 	<div class="row">
         <button class="btn-1" onclick="location.href='feature1/sound_to_word/dist/index.html'">語音轉文字</button>
         <button class="btn-2" onclick="location.href='feature2/pen-export-dPoBqOM/dist/index.html'">心情日記<br/>小助手</button>
@@ -87,15 +88,21 @@ html, body {
         <button class="btn-6" onclick="location.href='feature6/html.html'">造句學習</button>
     </div>
 		</div>
+	</div>
 	<!--<script src="script.js"></script>-->
 <script>
-	  if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js")
-      .then(() => console.log("Service Worker registered"));
+	function setVh() {
+  // 計算真正可用高度 (包含工具列隱藏狀態)
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
+	window.addEventListener('resize', setVh);
+window.addEventListener('orientationchange', setVh);
+window.addEventListener('load', setVh);
 </script>
 </body>
 </html>
+
 
 
 
