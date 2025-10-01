@@ -90,50 +90,11 @@ window.addEventListener('resize', setVh);
 window.addEventListener('orientationchange', setVh);
 window.addEventListener('load', setVh);
 
-	
-document.querySelectorAll(".background button").forEach(btn => {
-  btn.addEventListener("mousedown", startDrag);
-});
-
-let currentBtn = null;
-let offsetX, offsetY;
-
-function startDrag(e) {
-  currentBtn = e.target;
-  offsetX = e.offsetX;
-  offsetY = e.offsetY;
-
-  document.addEventListener("mousemove", onDrag);
-  document.addEventListener("mouseup", stopDrag);
-}
-
-function onDrag(e) {
-  if (!currentBtn) return;
-  
-  let bg = document.querySelector(".background");
-  let rect = bg.getBoundingClientRect();
-
-  // 計算百分比位置
-  let leftPercent = ((e.clientX - rect.left - offsetX) / rect.width) * 100;
-  let topPercent = ((e.clientY - rect.top - offsetY) / rect.height) * 100;
-
-  // 設定按鈕位置
-  currentBtn.style.left = leftPercent + "%";
-  currentBtn.style.top = topPercent + "%";
-
-  // 即時顯示在 console
-  console.log(currentBtn.className, "=> top:", topPercent.toFixed(2)+"%", "left:", leftPercent.toFixed(2)+"%");
-}
-
-function stopDrag() {
-  document.removeEventListener("mousemove", onDrag);
-  document.removeEventListener("mouseup", stopDrag);
-  currentBtn = null;
-}
 </script>
 
 </body>
 </html>
+
 
 
 
