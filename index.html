@@ -2,6 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
+	<link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>聽力輔助APP</title>
 
@@ -123,11 +124,16 @@ function setVh() {
 window.addEventListener('resize', setVh);
 window.addEventListener('orientationchange', setVh);
 window.addEventListener('load', setVh);
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+  .then(() => console.log("Service Worker registered"));
+}
 
 </script>
 
 </body>
 </html>
+
 
 
 
