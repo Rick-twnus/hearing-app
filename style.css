@@ -40,6 +40,9 @@ html, body {
 body {
     position: fixed;
     inset: 0;
+	    background: url("homebackground.jpg")
+    no-repeat center center;
+    background-size: cover;
 }
 
 .background {
