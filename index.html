@@ -126,7 +126,7 @@ viewport-fit=cover">
   
 
 
-<script>
+<!--<script>
 function setVh() {
   // 計算真正可用高度 (包含工具列隱藏狀態)
   let vh = window.innerHeight * 0.01;
@@ -139,9 +139,17 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js')
   .then(() => console.log("Service Worker registered"));
 }
-
+-->
 </script>
 
+	<script>
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        window.scrollTo(0, 1);
+    }, 100);
+});
+</script>
+	
 </body>
 </html>
 
