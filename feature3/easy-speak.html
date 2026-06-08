@@ -15,7 +15,6 @@
             <header class="home-header">
                 <h1 class="home-title" data-translate="app.title">Easy Speak</h1>
                 <p class="home-subtitle" data-translate="app.subtitle">幫助聽力障礙人士與他人輕鬆溝通</p>
-				
                 
                 <div class="language-switch">
                     <button id="lang-btn" class="language-btn" data-translate="language.switch">
@@ -43,10 +42,10 @@
                     </div>
                 </div>
             </main>
-			<br/><br/><button onclick="location.href='../index.html'" class="fixed top-4 left-4 bg-gray-300 px-3 py-1 rounded hover:bg-gray-400">返回首頁</button>
+			<br/><br/>
+			<button onclick="location.href='../index.html'" class="fixed top-4 left-4 bg-gray-300 px-3 py-1 rounded hover:bg-gray-400">返回首頁</button>
         </div>
     </div>
-	
 
     <!-- Conversation Page -->
     <div id="conversation-page" class="page">
@@ -59,13 +58,11 @@
                         <div class="messages-empty" data-translate="conversation.empty">開始您的對話吧！</div>
                     </div>
 
-                    <!-- Secondary Input Area -->
+                    <!-- Secondary Voice Input Area -->
                     <div class="input-area">
-                        <input type="text" id="secondary-input" class="message-input" 
-                               data-translate-placeholder="conversation.input.placeholder" 
-                               placeholder="輸入訊息...">
-                        <button class="send-btn" onclick="sendMessage('secondary')">
-                            <i class="fas fa-paper-plane"></i>
+                        <div id="secondary-voice-display" class="voice-display" data-translate="voice.idle">點擊麥克風開始語音輸入</div>
+                        <button id="mic-btn" class="send-btn" onclick="toggleListening()">
+                            <i id="mic-icon" class="fas fa-microphone"></i>
                         </button>
                     </div>
                 </div>

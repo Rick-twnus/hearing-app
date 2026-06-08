@@ -32,7 +32,10 @@ class EasySpeak {
                 'phrases.edit': '編輯',
                 'phrases.delete': '刪除',
                 'phrases.no.categories': '尚未建立任何分類',
-                'phrases.no.phrases': '此分類暫無常用語'
+                'phrases.no.phrases': '此分類暫無常用語',
+                'voice.idle': '點擊麥克風開始語音輸入',
+                'voice.listening': '聆聽中...',
+                'voice.unsupported': '此瀏覽器不支援語音輸入，請使用 Chrome 或 Edge'
             },
             en: {
                 'app.title': 'Easy Speak',
@@ -58,7 +61,10 @@ class EasySpeak {
                 'phrases.edit': 'Edit',
                 'phrases.delete': 'Delete',
                 'phrases.no.categories': 'No categories created yet',
-                'phrases.no.phrases': 'No phrases in this category'
+                'phrases.no.phrases': 'No phrases in this category',
+                'voice.idle': 'Tap mic to start voice input',
+                'voice.listening': 'Listening...',
+                'voice.unsupported': 'Speech recognition not supported. Please use Chrome or Edge.'
             }
         };
         
@@ -127,6 +133,8 @@ class EasySpeak {
         this.saveData();
         this.renderPhrases();
         this.renderPhrasesPopover();
+        if (this.recognition) this.recognition.lang = this.currentLanguage === 'zh' ? 'zh-TW' : 'en-US';
+        this.updateVoiceDisplay && this.updateVoiceDisplay();
     }
     
     // Navigation
@@ -161,11 +169,7 @@ class EasySpeak {
             }
         });
         
-        document.getElementById('secondary-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.sendMessage('secondary');
-            }
-        });
+        // (Secondary side uses voice input — no text input listener)
         
         document.getElementById('new-category-input').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -195,26 +199,90 @@ class EasySpeak {
     // Conversation Functions
     initConversation() {
         this.messages = [];
+        this.isListening = false;
+        this.setupRecognition();
         this.renderMessages();
         this.renderPhrasesPopover();
+        this.updateVoiceDisplay();
     }
-    
-    sendMessage(sender) {
-        const input = document.getElementById(`${sender}-input`);
-        const text = input.value.trim();
-        
+
+    setupRecognition() {
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SR) { this.recognition = null; return; }
+        if (this.recognition) { try { this.recognition.stop(); } catch(e){} }
+        const r = new SR();
+        r.continuous = true;
+        r.interimResults = true;
+        r.lang = this.currentLanguage === 'zh' ? 'zh-TW' : 'en-US';
+        r.onresult = (event) => {
+            let interim = '', finalText = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const tr = event.results[i][0].transcript;
+                if (event.results[i].isFinal) finalText += tr; else interim += tr;
+            }
+            if (finalText) {
+                this.sendMessage('secondary', finalText);
+                this.interimText = '';
+            } else {
+                this.interimText = interim;
+            }
+            this.updateVoiceDisplay();
+        };
+        r.onend = () => { this.isListening = false; this.interimText = ''; this.updateVoiceDisplay(); };
+        r.onerror = () => { this.isListening = false; this.interimText = ''; this.updateVoiceDisplay(); };
+        this.recognition = r;
+    }
+
+    toggleListening() {
+        if (!this.recognition) {
+            alert(this.t('voice.unsupported'));
+            return;
+        }
+        if (this.isListening) {
+            try { this.recognition.stop(); } catch(e){}
+            this.isListening = false;
+        } else {
+            this.recognition.lang = this.currentLanguage === 'zh' ? 'zh-TW' : 'en-US';
+            try { this.recognition.start(); this.isListening = true; } catch(e){}
+        }
+        this.updateVoiceDisplay();
+    }
+
+    updateVoiceDisplay() {
+        const display = document.getElementById('secondary-voice-display');
+        const icon = document.getElementById('mic-icon');
+        const btn = document.getElementById('mic-btn');
+        if (!display) return;
+        if (this.isListening) {
+            display.textContent = this.interimText || this.t('voice.listening');
+            if (icon) icon.className = 'fas fa-microphone-slash';
+            if (btn) btn.classList.add('listening');
+        } else {
+            display.textContent = this.t('voice.idle');
+            if (icon) icon.className = 'fas fa-microphone';
+            if (btn) btn.classList.remove('listening');
+        }
+    }
+
+    sendMessage(sender, providedText) {
+        let text;
+        if (providedText !== undefined) {
+            text = providedText.trim();
+        } else {
+            const input = document.getElementById(`${sender}-input`);
+            text = input.value.trim();
+            if (text) input.value = '';
+        }
         if (!text) return;
-        
+
         const message = {
             id: Date.now().toString(),
             text: text,
             sender: sender,
             timestamp: new Date()
         };
-        
+
         this.messages.push(message);
-        input.value = '';
-        
         this.renderMessages();
     }
     
@@ -527,43 +595,12 @@ function saveEdit() {
     app.saveEdit();
 }
 
+function toggleListening() {
+    app.toggleListening();
+}
+
 // Initialize the app
 let app;
 document.addEventListener('DOMContentLoaded', () => {
     app = new EasySpeak();
 });
-const messagesEl = document.getElementById('messages');
-let originalHeight = window.innerHeight;
-
-function sendMessage(side) {
-  const input = side === 'top' ? document.getElementById('topText') : document.getElementById('bottomText');
-  const msg = input.value.trim();
-  if (!msg) return;
-
-  const div = document.createElement('div');
-  div.textContent = msg;
-  div.classList.add('chat-bubble', side);
-
-  messagesEl.appendChild(div);
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-  input.value = '';
-}
-
-// 偵測鍵盤彈出，自動捲到底部
-window.addEventListener('resize', () => {
-  const newHeight = window.innerHeight;
-  if (newHeight < originalHeight) {
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-  }
-  originalHeight = newHeight;
-});
-
-// 輸入框 focus 時捲到底部
-document.querySelectorAll('.chat-input-container input').forEach(input => {
-  input.addEventListener('focus', () => {
-    setTimeout(() => {
-      messagesEl.scrollTop = messagesEl.scrollHeight;
-    }, 300);
-  });
-});
-s
