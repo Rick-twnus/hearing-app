@@ -6,9 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const returnArea = document.querySelector('.return-area');
 
     // 初始化拖拽事件
-    document.querySelectorAll('.block').forEach(block => {
-        block.addEventListener('dragstart', dragStart);
-    });
+document.addEventListener('click', (e) => {
+
+    const block = e.target.closest('.block');
+
+    if (
+        block &&
+        !block.classList.contains('dropped-block')
+    ) {
+        addBlockToCanvas(block);
+    }
+
+});
 
     // 初始化新增按鈕
     document.querySelectorAll('.add-custom').forEach(button => {
@@ -17,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     canvas.addEventListener('dragover', dragOver);
     canvas.addEventListener('drop', drop);
+    if (returnArea) {
     returnArea.addEventListener('drop', returnBlock);
+}
     clearButton.addEventListener('click', clearCanvas);
     playButton.addEventListener('click', playSentence);
 
@@ -65,6 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
         newBlock.className = className.replace('dragging', '').trim() + ' dropped-block';
         newBlock.draggable = true;
         newBlock.addEventListener('dragstart', dragStart);
+
+        newBlock.addEventListener('click', () => {
+    addBlockToCanvas(newBlock);
+});
 
         if (target) {
             const rect = target.getBoundingClientRect();
@@ -141,7 +156,27 @@ document.addEventListener('DOMContentLoaded', () => {
             input.value = '';
         }
     }
+	
 
+	
+function addBlockToCanvas(originalBlock) {
+
+    const newBlock = document.createElement('div');
+
+    newBlock.textContent = originalBlock.textContent;
+
+    newBlock.className =
+        originalBlock.className + ' dropped-block';
+
+    newBlock.addEventListener('click', () => {
+        newBlock.remove();
+        updateSentence();
+    });
+
+    canvas.appendChild(newBlock);
+
+    updateSentence();
+}
     function playSentence() {
         const sentence = sentenceOutput.textContent;
         if (sentence && 'speechSynthesis' in window) {
@@ -158,8 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('dragstart', (e) => {
         if (e.target.classList.contains('dropped-block')) {
             draggedBlock = e.target;
-            e.dataTransfer.effectAllowed = 'move';
-        }
+           e.dataTransfer.effectAllowed = 'move';
+      }
     });
 
     canvas.addEventListener('dragend', () => {
